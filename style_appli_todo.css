@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 460px;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideDownFade 0.7s ease forwards;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  letter-spacing: 1.5px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.todo-form {
+  width: 100%;
+  display: flex;
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+#taskInput {
+  flex-grow: 1;
+  padding: 18px 25px;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.3);
+  color: #2c2c2c;
+  box-shadow: inset 0 2px 6px rgba(255,255,255,0.5);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+#taskInput::placeholder {
+  color: #6b6b6b;
+  font-weight: 400;
+}
+
+#taskInput:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 0 15px #7b68ee;
+  color: #3a3a3a;
+}
+
+button {
+  background: #764ba2;
+  color: white;
+  border: none;
+  padding: 0 30px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(118, 75, 162, 0.7);
+  transition: all 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  top: 0;
+  left: -120%;
+  transition: all 0.5s ease;
+  border-radius: 50px;
+  z-index: 1;
+}
+
+button:hover::before {
+  left: 120%;
+}
+
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 5px 15px rgba(118, 75, 162, 0.9);
+}
+
+#taskList {
+  width: 100%;
+  list-style-type: none;
+}
+
+#taskList li {
+  background: white;
+  padding: 18px 25px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #4a4a4a;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  cursor: default;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+#taskList li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+#taskList li button {
+  background: #ff5c5c;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 92, 92, 0.5);
+  transition: background-color 0.3s ease;
+  user-select: none;
+  font-size: 1rem;
+}
+
+#taskList li button:hover {
+  background: #e60000;
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    height: auto;
+    margin-bottom: 18px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-120%);
+    height: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 25px;
+  }
+  h1 {
+    font-size: 2.2rem;
+  }
+  button, #taskInput {
+    font-size: 1rem;
+  }
+  #taskList li {
+    font-size: 1rem;
+  }
+}
